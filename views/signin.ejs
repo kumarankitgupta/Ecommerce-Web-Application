@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Sign In</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			height: 100vh;
+			background-color: #f1f1f1;
+		}
+
+		.container {
+			width: 400px;
+			height: 400px;
+			background-color: #fff;
+			border: 1px solid #ccc;
+			border-radius: 5px;
+			padding: 20px;
+			box-sizing: border-box;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+            box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+		}
+
+		h2 {
+			margin-top: 0;
+		}
+
+		input[type="text"], input[type="password"] {
+			width: 100%;
+			padding: 12px 20px;
+			margin: 8px 0;
+			box-sizing: border-box;
+			border: 2px solid #ccc;
+			border-radius: 4px;
+			font-size: 16px;
+		}
+
+		button {
+			background-color: #4CAF50;
+			color: #fff;
+			padding: 14px 20px;
+			margin: 8px 0;
+			border: none;
+			border-radius: 4px;
+			cursor: pointer;
+			font-size: 16px;
+		}
+
+		button:hover {
+			background-color: #45a049;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Sign In</h2>
+		<form method="post" action="/signin">
+			<label for="username">Username:</label>
+			<input type="text" id="username" name="username">
+
+			<label for="password">Password:</label>
+			<input type="password" id="password" name="password">
+
+			<button type="submit">Sign In</button>
+			<% if(info){ %>
+			<h4 style="color: red;"><%= info %></h4>
+			<% } %>
+			<p style="margin-bottom:1px;">Create new account</p>
+			<a href="/forgotpass">Forgot password</a><br>
+			<a  href="/signup">Signup</a>
+		</form>
+	</div>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <style>
+    .popup {
+    position: fixed;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+  }
+  .popup-content {
+    position: relative;
+    background-color: white;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 60%;
+    height: 110%;
+    overflow: auto;
+    text-align: center;
+  }
+  
+  
+  .close {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 30px;
+    font-weight: bold;
+    color: #888;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  </style>
+  </head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success text-light fixed-top" style="z-index: 1;" >
+        <div class="container-fluid">
+          
+              <% if(name){  %>
+                <b>Welcome <%= name %></b>
+                <% }else {%>
+                    <a class="navbar-brand" href="/signin"> Signin</a>
+               <%}%>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <% if(name === null){  %>
+                <a class="nav-link text-light" href="/signup">Signup</a>
+              <%}%>
+              <a class="nav-link text-light" href="/">Products</a>
+              <% if(name){  %>
+                    <a class="nav-link text-light" href="/logout"> Logout</a>
+               <%}%>
+               <% if(name){  %>
+                <a class="nav-link text-light" href="/changePassword">Change Password</a>
+           <%}%>
+           <% if(name){  %>
+            <a class="nav-link text-light" href="/mycart">My Cart</a>
+          <%}%>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <section class="container justify-content-center" style="margin-top: 70px;">
+        <div class="row" id = "productlist">
+        <% for(let i = 0 ;i < arr.length ; i++){ %>
+          <div class="card col-4" style="width: 18rem;padding: 2%;margin: 5px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;">
+          <div class="iamge-section" style="height: 70%;">
+            <img src= "<%= arr[i].imageLink %>" class="img-fluid" alt="...">
+          </div>
+          <div class="card-body" style="height: 30%;">
+            <h5 class="card-title"><%= arr[i].name %></h5>
+            <h4>Price:- $<%= arr[i].price %></h4>
+            <button class="btn btn-success" onclick="showPopup(<%= JSON.stringify(arr[i]) %>)">Details</button>
+            <form action="/addtocart?id=<%= arr[i]._id %>" method="post" style="display:inline-block">
+              <input type="submit" value="Add to cart" class="btn btn-danger">
+            </form>
+          </div>
+        </div>
+        <% } %>
+       </div>
+      </section>
+
+      <button class="btn btn-outline-success m-5">Load more</button>
+
+
+      <div id="popup-container" class="popup">
+        <div class="popup-content">
+          <h1 id="popname"></h1>
+          <img  alt="" style="height:auto ;width:auto;" id="popimg">
+          <p id="popinfo"></p>
+          <p id="poprice"></p>
+          <span class="close" onclick="hidePopup()">&times;</span>
+        </div>
+      </div>
+
+      <script>
+        var prod = 0;
+        const popinfo = document.getElementById("popinfo");
+        const popimg = document.getElementById("popimg");
+        const poprice = document.getElementById("poprice");
+        const popname = document.getElementById("popname");
+        function showPopup(data) {
+                  console.log(data)
+                  popimg.setAttribute('src',data.imageLink); 
+                  popinfo.textContent = "Details:- " + data.detail;
+                  popname.textContent = data.name;
+                  poprice.textContent = "Price:- $" + data.price;
+            document.getElementById("popup-container").style.display = "block";
+          }
+        function hidePopup(){
+          document.getElementById("popup-container").style.display = "none";
+        }
+</script>
+</body>
+</html>

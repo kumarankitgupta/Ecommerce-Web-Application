@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Seller Added Successfully</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<style>
+		body {
+			background-color: #f2f2f2;
+			font-family: Arial, sans-serif;
+			text-align: center;
+		}
+		.success-message {
+			margin-top: 20vh;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			justify-content: center;
+		}
+		.tick {
+			font-size: 100px;
+			color: green;
+			margin-bottom: 30px;
+		}
+		.counter {
+			font-size: 24px;
+			color: green;
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<div class="success-message">
+		<div class="tick">&#10004;</div>
+		<div>Seller added Successfully</div>
+		<div class="counter">Redirecting to homepage in <span id="counter">5</span> seconds...</div>
+	</div>
+
+	<script>
+		// redirect to homepage after 3 seconds
+		var count = 5;
+		var interval = setInterval(function(){
+			count--;
+			document.getElementById('counter').innerText = count;
+			if(count == 0){
+				clearInterval(interval);
+				window.location.href = "http://localhost:3000/users/Admin";
+			}
+		}, 1000);
+	</script>
+</body>
+</html>

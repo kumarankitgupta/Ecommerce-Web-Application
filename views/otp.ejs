@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      /* Center the OTP verification div */
+      .otp-verification {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 300px;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px #ccc;
+        text-align: center;
+      }
+    </style>
+    <title>OTP VERIFICATION</title>
+  </head>
+  <body>
+    <div class="otp-verification">
+      <h2>OTP Verification</h2>
+      <p>Check your email for the OTP.</p>
+      <form action="/verifyEmail" method="post">
+        <label for="otp">Enter your OTP:</label><br>
+        <input type="text" id="otp" name="otp"><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+  </body>
+</html>

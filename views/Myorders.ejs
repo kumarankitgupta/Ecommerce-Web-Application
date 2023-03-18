@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <style>
+        .box{
+            padding: 2%;
+            border-radius: 3%;
+            box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+            border-bottom: 3px solid green;
+        }
+    </style>
+</head>
+    <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success text-light fixed-top" style="z-index: 1;" >
+        <div class="container-fluid">
+          
+              <% if(name){  %>
+                <b>Welcome <%= name %></b>
+                <% }else {%>
+                    <a class="navbar-brand" href="/signin"> Signin</a>
+               <%}%>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+              <% if(name === null){  %>
+                <a class="nav-link text-light" href="/signup">Signup</a>
+              <%}%>
+              <a class="nav-link text-light" href="/">Products</a>
+              
+               <% if(name){  %>
+                <a class="nav-link text-light" href="/users/changePassword">Change Password</a>
+           <%}%>
+           <% if(name){  %>
+            <a class="nav-link text-light" href="/users/mycart">My Cart</a>
+          <%}%>
+          <% if(name){  %>
+            <a class="nav-link text-light" href="/users/myorders">My Orders</a>
+          <%}%>
+          <% if(name){  %>
+            <a class="nav-link text-light" href="/logout"> Logout</a>
+       <%}%>
+            </div>
+          </div>
+        </div>
+      </nav>
+     <div id="OrderContainer" style="width: 100%;margin-top: 70px;">
+        <% if(arr.length === 0){ %>
+            <h1 class="m-4">🙄 It seems you have placed no orders!</h1>
+            <% } %>
+        <% for(let i = 0 ; i < arr.length ; i++){ %>
+        <div class="row box container m-5">
+            <div class="col"> <img src=<%= arr[i].productId.imageLink %> class="img-fluid"></div>
+            <div class="col m-5"><h5><%= arr[i].productId.name %></h5></div>
+            <div class="col m-5"><h5>Qty:-<%= arr[i].quantity %></h5></div>
+            <div class="col m-5"><h5>Price:-<%= arr[i].productId.price %></h5></div>
+            <div class="col m-5"><h5>Total:-<%= Number(arr[i].productId.price)*Number(arr[i].quantity) %></h5></div>
+            <h5 style="text-align: right;">Delivery Address:<%= arr[i].street %> <%= arr[i].city %> <%= arr[i].state %> <%= arr[i].zip %></h5>
+        </div>
+        <% } %>
+     </div>
+</body>
+</html>
