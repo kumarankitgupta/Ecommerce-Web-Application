@@ -1,6 +1,6 @@
 const Order = require('../models/orderModel')
 const Product = require('../models/productModel')
-function savetheproduct(x){
+function savetheproductdb(x){
     const prod = new Product({
         name:x.productName,
         imageLink:x.image,
@@ -65,4 +65,4 @@ async function deleteMyProductDb(id){
         return err;
     }
 }
-module.exports = {savetheproduct,updateTheProductDb,getMyProductDb,deleteMyProductDb,recieveTheOrderDb}
+module.exports = {savetheproductdb,updateTheProductDb,getMyProductDb,deleteMyProductDb,recieveTheOrderDb}

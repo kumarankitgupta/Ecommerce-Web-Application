@@ -132,7 +132,7 @@
         <% for(let i = 0 ;i < arr.length ; i++){ %>
           <% sum = sum + Number(arr[i].quantity)*Number(arr[i].productId.price) %>
         <div class="card col-4" style="width: 18rem;padding: 2%;margin: 5px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;">
-          <img style="height: 250px;" src= "<%= arr[i].productId.imageLink %>" class="card-img-top" alt="...">
+          <img style="height: 250px;" src= "<%= arr[i].productId.imageLink %>" class="img-fluid" alt="...">
           <div class="card-body">
             <h5 class="card-title"><%= arr[i].productId.name %></h5>
             <h4>Price:- $<%= arr[i].productId.price %></h4>
@@ -159,7 +159,7 @@
       <div id="popup-container" class="popup">
         <div class="popup-content">
           <h1 id="popname"></h1>
-          <img  alt="" style="height:auto ;width:auto;" id="popimg">
+          <img  alt="" style="height:auto ;width:auto;" id="popimg" >
           <p id="popinfo"></p>
           <p id="poprice"></p>
           <span class="close" onclick="hidePopup()">&times;</span>

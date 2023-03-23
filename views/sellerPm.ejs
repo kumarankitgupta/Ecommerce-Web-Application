@@ -118,18 +118,21 @@
       </nav>
       <section class="container justify-content-center" style="margin-top: 70px;">
         <div class="row" id = "productlist">
-        <% for(let i = 0 ; i < arr.length ; i++){ %>
-            <div class="card col-4" style="width: 18rem;padding: 2%;margin: 5px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;">
-              <img src= "<%= arr[i].imageLink %>" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Name:- <%= arr[i].name %></h5>
-                <h5>Price:- $<%= arr[i].price %></h5>
-                <h5>Quantity:-<%= arr[i].quantity %></h5>
-                <button class="btn btn-primary" onclick="showPopup(<%= JSON.stringify(arr[i]) %>)">Update</button>
-                <button class="btn btn-danger" onclick="deleteItem(<%= JSON.stringify( arr[i]._id ) %>)">Delete</button>
-              </div>
-            </div>
-            <% } %>
+			<% for(let i = 0 ; i < arr.length ; i++){ %>
+				<div class="card col-4" style="width: 18rem;padding: 2%;margin: 5px;box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;">
+				  <img style="height:250px" src= "<%= arr[i].imageLink %>" class="img-fluid" alt="...">
+				  <div class="card-body">
+					  <div style="height: 140px;">
+						<h5 class="card-title">Name:- <%= arr[i].name %></h5>
+						<h5>Price:- $<%= arr[i].price %></h5>
+						<h5>Quantity:-<%= arr[i].quantity %></h5>
+					  </div>
+					<button class="btn btn-outline-warning rounded-pill" onclick="showPopup(<%= JSON.stringify(arr[i]) %>)">Update</button>
+					<button class="btn btn-outline-danger rounded-pill" onclick="deleteItem(<%= JSON.stringify( arr[i]._id ) %>)">Delete</button>
+				  </div>
+				</div>
+				<% } %>
+			</div>
         </div>
       </section>
 

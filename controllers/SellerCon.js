@@ -1,14 +1,14 @@
 const savetheproduct = require('../services/Authentication');
-const { updateTheProductDb, recieveTheOrderDb, getMyProductDb, deleteMyProductDb } = require('../services/sellerServices');
+const { updateTheProductDb, recieveTheOrderDb, getMyProductDb, deleteMyProductDb, savetheproductdb } = require('../services/sellerServices');
 const addtheProduct =(req,res)=>{
     let x = req.body;
     x.image = req.file.filename
     x.sellerId = req.session.SellerId;
-    savetheproduct(x)
+    savetheproductdb(x)
     if(req.session.isAdmin){
-        res.redirect('/ProductDescription');   
+        res.redirect('/admin/ProductDescription');   
     }else{
-        res.redirect('/users/Seller')
+        res.redirect('/seller/myproducts')
     }  
 }
 const updateTheproduct = (req,res)=>{
@@ -32,7 +32,7 @@ const recieveTheOrder = (req,res)=>{
     const id = req.session.SellerId;
     recieveTheOrderDb(id)
     .then((data)=>{
-        console.log(data[0].userId.name)
+        console.log(data)
         res.render('RecieveOrders',{name:req.session.username,arr:data})
     })
 }
